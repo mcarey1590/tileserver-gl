@@ -404,7 +404,7 @@ function start(opts) {
     }
   });
 
-  var server = app.listen(process.env.PORT || opts.port, process.env.BIND || opts.bind, function() {
+  var server = app.listen(process.env.PORT || config.port || opts.port, process.env.BIND || opts.bind, function() {
     var address = this.address().address;
     if (address.indexOf('::') === 0) {
       address = '[' + address + ']'; // literal IPv6 address
