@@ -2,27 +2,10 @@ FROM node:6.15.1-stretch
 MAINTAINER Petr Sloup <petr.sloup@klokantech.com>
 
 ENV NODE_ENV="production"
+EXPOSE 80
 VOLUME /data
 WORKDIR /data
-EXPOSE 80
-ENTRYPOINT ["/bin/bash", "/usr/src/app/run.sh"]
-
-RUN apt-get -qq update \
-&& DEBIAN_FRONTEND=noninteractive apt-get -y install \
-    apt-transport-https \
-    curl \
-    unzip \
-    build-essential \
-    python \
-    libcairo2-dev \
-    libgles2-mesa-dev \
-    libgbm-dev \
-    libllvm3.9 \
-    libprotobuf-dev \
-    libxxf86vm-dev \
-    xvfb \
-    x11-utils \
-&& apt-get clean
+ENTRYPOINT ["node", "/usr/src/app/", "-p", "80"]
 
 RUN mkdir -p /usr/src/app
 COPY / /usr/src/app
